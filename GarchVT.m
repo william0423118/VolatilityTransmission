@@ -13,8 +13,13 @@ DataMtx=CancelZro(data);
 DataMtx=diff(log(DataMtx));
 Resduals=GetRes(DataMtx);
 K=size(Resduals,2);
+try
 [PARAMETERS,LL,HT,VCV,SCORES] = bekk(Resduals,[],P,O,Q,'Full',[],[]);
 [C,A,G,B] = bekk_parameter_transform(PARAMETERS,P,O,Q,K,3);
+catch
+B=zeros(K,K);
+A=zeros(K,K);
+end
 % A is the effect of shock of vol
 % B is the volatility spillover
 [TS,Trans,Rec,SPS]=GetSpillover(A);

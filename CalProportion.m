@@ -1,4 +1,6 @@
 function [self direct crosmkt]=CalProportion(A,B)
+A=abs(A);
+B=abs(B);
 [row,col]=size(A);
 for i=1:row
     self(i)=A(i,i)^2/(sum(A(i,:)))^2;
