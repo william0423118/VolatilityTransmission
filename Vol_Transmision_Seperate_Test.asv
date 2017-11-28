@@ -10,7 +10,7 @@ clc;
 % fluctulation in Asian market.
 % AllData1 from 1/7/2013-3/1/2017 
 load('AllData1.mat');
-Alldata=Alldata(1:1500,:);
+Alldata=Alldata(:,:);
 X=23;
 Day=20;
 window=X*Day;
@@ -38,7 +38,7 @@ for i=1:size(Data_AS,3)
 %[Final_VolSp VolSp_TS]=maketable(VolSp_AS,VolSp_EU,VolSp_NA,VolSp_NO,Alldata1);
 [Final_VolT VolT_TS]=maketable(VolT_AS,VolT_EU,VolT_NA,VolT_NO);
 
-filename = 'ExtendData.xlsx';
+filename = 'ExtendData3.xlsx';
 xlswrite(filename,Day,i,'A1');
 xlswrite(filename,Day*23*(i-1)+1,i,'A2');
 % xlswrite(filename,Shock_TS,1,'C2');
@@ -78,3 +78,8 @@ if sum(isnan(VolT_NO.TS))==0
 end
 
 end
+filename1 = 'ExtendDataSep3.xlsx';
+xlswrite(filename1,Res_As,1,'C2');
+xlswrite(filename1,Res_Eu,2,'C2');
+xlswrite(filename1,Res_Na,3,'C2');
+xlswrite(filename1,Res_No,4,'C2');
